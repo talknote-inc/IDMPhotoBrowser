@@ -794,7 +794,11 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         NSUInteger index = PAGE_INDEX(page);
 		page.frame = [self frameForPageAtIndex:index];
         page.captionView.frame = [self frameForCaptionView:page.captionView atIndex:index];
-		[page setMaxMinZoomScalesForCurrentBounds];
+        /**
+         * _controlVisibilityTimerによって5秒後にviewWillLayoutSubviewsも呼ばれ、以下でzoomScaleが初期化される。
+         * 画像を拡大した時、勝手に元のサイズに戻る動きになるのでコメントアウトする
+        */
+//		[page setMaxMinZoomScalesForCurrentBounds];
 	}
 
 	// Adjust contentOffset to preserve page location based on values collected prior to location
